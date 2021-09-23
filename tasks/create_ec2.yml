@@ -1,0 +1,25 @@
+---
+     - name: Create a new ec2 key pair, returns generated key
+       ec2_key: 
+         aws_access_key:   "{{ aws_access_key }}"
+         aws_secret_key:   "{{ aws_secret_key }}"
+         name: "{{ key_pair_name }}"
+         region: "{{ region }}"
+       register: keypair
+       tags:
+         - dev-key
+
+     - name: Create EC2 server
+       ec2:                           
+         image: "{{image_name}}"
+         wait: yes
+         instance_type: "{{instance_type}}"
+         region: "{{ region }}"
+         group_id: "{{ security_group.group_id }}"
+         vpc_subnet_id: "{{ my_public_subnet.subnet.id }}"
+         assign_public_ip: yes
+         key_name: "{{ keypair.key.name }}"
+         instance_tags:
+            Name: develop
+         aws_access_key:   "{{ aws_access_key }}"
+         aws_secret_key:   "{{ aws_secret_key }}"   

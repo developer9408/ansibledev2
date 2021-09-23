@@ -1,0 +1,27 @@
+---
+# vars file for aws_access
+
+aws_access_key: "AKIA5WV354T3LDA4HR6O"
+aws_secret_key: "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"
+region: "us-east-1"
+image_name: "ami-0747bdcabd34c712a"
+instance_type: "t2.micro"
+count: "1"
+
+#VPC
+vpc_name: "development"
+vpc_cidr: "172.33.0.0/16"
+
+#Subnet
+subnet_name1: "dev_subnet_1"
+pub_subnet_1_cidr: "172.33.0.0/17"
+
+subnet_name2: "private_subnet_1"
+priv_subnet_1_cidr: "172.33.0.0/18"
+
+#key storage location
+key_pair_name: "dev-key"
+
+# Internet Gateway Name
+igw_name: "ansible-IGW"
+
